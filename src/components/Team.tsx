@@ -11,27 +11,32 @@ const founder = {
 const team = [
   {
     name: "Keshav Goyal",
-    role: "Founder & Partner",
+    role: "Executive Director & CMO",
+    fullRole: "Executive Director & Chief Marketing Officer",
     image: null,
   },
   {
     name: "Davinder Kumar",
-    role: "Founder & Partner",
+    role: "Chairperson & Executive Director",
+    fullRole: "Chairperson & Executive Director",
     image: null,
   },
   {
     name: "Vishnu Goyal",
-    role: "Founder & Partner",
+    role: "Chief Executive Officer",
+    fullRole: "CEO (Chief Executive Officer)",
     image: null,
   },
   {
     name: "Umesh Gupta",
-    role: "Founder & Partner",
+    role: "Chief Financial Officer",
+    fullRole: "CFO (Chief Financial Officer)",
     image: null,
   },
   {
     name: "Gurmeet Singh",
-    role: "Founder & Partner",
+    role: "CTO & CLO",
+    fullRole: "Chief Technical Officer & Chief Legal Officer",
     image: null,
   },
 ];
@@ -163,7 +168,7 @@ const Team = () => {
               <h3 className="font-bold text-foreground text-sm md:text-base mb-1 group-hover:text-primary transition-colors">
                 {member.name}
               </h3>
-              <p className="text-xs md:text-sm text-muted-foreground">
+              <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">
                 {member.role}
               </p>
             </motion.div>
