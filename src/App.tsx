@@ -27,6 +27,7 @@ import Equipment from "./pages/Equipment";
 import Compliance from "./pages/Compliance";
 import Buyers from "./pages/Buyers";
 import Sitemap from "./pages/Sitemap";
+import LocalSEOPage from "./pages/LocalSEO";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ const App = () => (
           <Route path="/awareness/distilleries-fuel-punjab" element={<DistilleriesFuelPunjab />} />
           <Route path="/awareness/poultry-farms-fuel-punjab" element={<PoultryFarmsFuelPunjab />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/local-seo" element={<LocalSEOPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

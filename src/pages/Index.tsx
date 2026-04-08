@@ -9,6 +9,7 @@ import StickyCTA from "@/components/StickyCTA";
 import BottomNav from "@/components/BottomNav";
 import SEOHead from "@/components/SEOHead";
 import { LeadCapturePopup } from "@/components/LeadCapturePopup";
+import { LocalSEO, NAPSchema } from "@/components/LocalSEO";
 
 // Lazy load components below the fold
 const Products = lazy(() => import("@/components/Products"));
@@ -43,6 +44,14 @@ const Index = () => {
         description="Leading manufacturer of eco-friendly biomass pellets in Punjab. Save 40% on fuel costs with our sustainable energy solutions. High-quality, carbon-neutral biomass fuel for industries."
         keywords="biomass pellets, renewable energy, sustainable fuel, eco-friendly, carbon neutral, green energy, Punjab, Bathinda, industrial fuel, coal alternative"
       />
+      <LocalSEO
+        title="Shree Balaji Envirotech - Premium Biomass Pellets | Bathinda, Punjab"
+        description="Leading manufacturer of eco-friendly biomass pellets in Punjab. Convert agricultural waste to sustainable fuel. Serving 500+ industries across North India."
+        includeProducts
+        includeServices
+        rating={{ value: 4.9, count: 127 }}
+      />
+      <NAPSchema />
       <Navbar />
       <Hero />
       <Stats />

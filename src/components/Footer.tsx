@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.jpg";
 import { Leaf, Mail, Phone, MapPin, Instagram } from "lucide-react";
+import { NAPFooter } from "./NAPFooter";
+import { businessInfo } from "@/lib/localSEO";
 
 const Footer = () => {
   const location = useLocation();
@@ -20,6 +22,13 @@ const Footer = () => {
       <div className="absolute top-10 right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 py-16 relative z-10">
+        {/* NAP Information - Schema.org markup */}
+        <div className="mb-12">
+          <NAPFooter />
+        </div>
+
+        <div className="border-t border-primary-foreground/10 pt-12 mb-12" />
+
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
