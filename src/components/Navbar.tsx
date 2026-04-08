@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Chrome as Home, Package, Sparkles, MessageSquare, Users, BookOpen, Briefcase, ChevronDown, Factory, ClipboardCheck, Wrench, ShoppingCart, Building2, Wheat, Milk, FileText, Flame, Egg, Fuel, UtensilsCrossed, Building, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, Chrome as Home, Package, Sparkles, MessageSquare, Users, BookOpen, Briefcase, ChevronDown, Factory, ClipboardCheck, Wrench, ShoppingCart, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 const logoWebP = "/logo.webp";
 const logoJPG = "/logo.jpg";
@@ -21,17 +21,6 @@ const businessNavItems = [
   { label: "Buyers", path: "/buyers", icon: ShoppingCart, description: "Find pellet buyers" },
 ];
 
-const industryNavItems = [
-  { label: "Textile Mills", path: "/awareness/textile-mills-fuel-punjab", icon: Building2, description: "Fuel solutions for textiles" },
-  { label: "Rice Mills", path: "/awareness/rice-mills-fuel-punjab", icon: Wheat, description: "Biomass for rice processing" },
-  { label: "Dairy Plants", path: "/awareness/dairy-plants-fuel-punjab", icon: Milk, description: "Sustainable dairy operations" },
-  { label: "Paper Mills", path: "/awareness/paper-mills-fuel-punjab", icon: FileText, description: "Clean energy for paper" },
-  { label: "Distilleries", path: "/awareness/distilleries-fuel-punjab", icon: Flame, description: "Efficient distillery fuel" },
-  { label: "Poultry Farms", path: "/awareness/poultry-farms-fuel-punjab", icon: Egg, description: "Heating for poultry" },
-  { label: "Brick Kilns", path: "/awareness/brick-kilns-biomass-punjab", icon: Building, description: "NGT compliant fuel" },
-  { label: "Food Processing", path: "/awareness/food-processing-fuel-punjab", icon: UtensilsCrossed, description: "Food industry solutions" },
-  { label: "Industrial Fuel", path: "/awareness/industrial-fuel-costs-punjab", icon: Fuel, description: "General fuel cost savings" },
-];
 
 const pageNavItems = [
   { label: "About Us", path: "/about", icon: Users },
@@ -69,7 +58,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [isBusinessOpen, setIsBusinessOpen] = useState(false);
-  const [isIndustriesOpen, setIsIndustriesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -262,75 +250,6 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {/* Industries Dropdown */}
-              <div 
-                className="relative"
-                onMouseEnter={() => setIsIndustriesOpen(true)}
-                onMouseLeave={() => setIsIndustriesOpen(false)}
-              >
-                <button
-                  className={cn(
-                    "relative font-medium transition-colors group flex items-center gap-1",
-                    isScrolled ? "text-foreground" : "text-primary-foreground"
-                  )}
-                >
-                  <Building2 className="w-4 h-4" />
-                  Industries
-                  <ChevronDown className={cn(
-                    "w-4 h-4 transition-transform duration-200",
-                    isIndustriesOpen && "rotate-180"
-                  )} />
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full" />
-                </button>
-                
-                {/* Dropdown Menu */}
-                <AnimatePresence>
-                  {isIndustriesOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95, y: -10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="absolute top-full right-0 mt-2 w-80 bg-card/98 backdrop-blur-xl rounded-xl shadow-2xl border border-border overflow-hidden z-50"
-                    >
-                      <div className="p-2 max-h-[480px] overflow-y-auto custom-scrollbar">
-                        {industryNavItems.map((item, index) => {
-                          const Icon = item.icon;
-                          return (
-                            <motion.div
-                              key={item.path}
-                              initial={{ opacity: 0, x: 20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.03, duration: 0.2 }}
-                            >
-                              <Link
-                                to={item.path}
-                                className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-all duration-200 group"
-                              >
-                                <motion.div
-                                  className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                                  whileHover={{ scale: 1.1, rotate: -5 }}
-                                  transition={{ duration: 0.2 }}
-                                >
-                                  <Icon className="w-4 h-4" />
-                                </motion.div>
-                                <div className="flex-1">
-                                  <div className="font-medium text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
-                                    {item.label}
-                                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
-                                  </div>
-                                  <div className="text-xs text-muted-foreground mt-0.5">{item.description}</div>
-                                </div>
-                              </Link>
-                            </motion.div>
-                          );
-                        })}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              
               {/* Page Navigation Links */}
               {pageNavItems.map((item) => (
                 <Link
@@ -470,33 +389,6 @@ const Navbar = () => {
                       className="flex items-center gap-3 w-full text-left font-medium py-3 px-4 rounded-xl transition-all duration-200 text-foreground hover:bg-muted"
                       style={{ 
                         animationDelay: `${(index + 4) * 50}ms`,
-                        animation: isMobileMenuOpen ? 'fade-in 0.3s ease-out forwards' : 'none'
-                      }}
-                    >
-                      <Icon className="w-5 h-5" />
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </div>
-
-              {/* Section Label - Industries */}
-              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                Industries
-              </div>
-              
-              {/* Industries Navigation Items */}
-              <div className="space-y-1 mb-6">
-                {industryNavItems.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-3 w-full text-left font-medium py-3 px-4 rounded-xl transition-all duration-200 text-foreground hover:bg-muted"
-                      style={{ 
-                        animationDelay: `${(index + 8) * 50}ms`,
                         animation: isMobileMenuOpen ? 'fade-in 0.3s ease-out forwards' : 'none'
                       }}
                     >
