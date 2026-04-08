@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Chrome as Home, Package, Sparkles, MessageSquare, Users, BookOpen, Briefcase, ChevronDown, Factory, ClipboardCheck, Wrench, ShoppingCart, Building2, Wheat, Milk, FileText, Flame, Egg, Fuel, UtensilsCrossed, Building } from "lucide-react";
+import { Menu, X, Phone, Chrome as Home, Package, Sparkles, MessageSquare, Users, BookOpen, Briefcase, ChevronDown, Factory, ClipboardCheck, Wrench, ShoppingCart, Building2, Wheat, Milk, FileText, Flame, Egg, Fuel, UtensilsCrossed, Building, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 const logoWebP = "/logo.webp";
 const logoJPG = "/logo.jpg";
 import { cn } from "@/lib/utils";
@@ -102,46 +103,71 @@ const Navbar = () => {
   return (
     <>
       {/* Top bar - fixed and hides on scroll */}
-      <div className={`hidden md:block fixed top-0 left-0 right-0 z-50 bg-primary text-primary-foreground py-2 transition-all duration-500 ${
-        isScrolled ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
-      }`}>
-        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
-          <div className="flex items-center gap-2">
-            <Phone className="w-4 h-4" />
-            <a href="tel:+916280610158" className="hover:underline">+91 62806 10158</a>
-            <span className="mx-1">|</span>
-            <a href="tel:+918360410158" className="hover:underline">+91 83604 10158</a>
-            <span className="mx-2">|</span>
-            <a href="mailto:shreebalajienvirotech@gmail.com" className="hover:underline">shreebalajienvirotech@gmail.com</a>
-          </div>
-          <div className="text-primary-foreground/90">
-            🌿 Sustainable Energy for a Greener Tomorrow
-          </div>
-        </div>
-      </div>
+      <AnimatePresence>
+        {!isScrolled && (
+          <motion.div
+            initial={{ y: -40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -40, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="hidden md:block fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary via-primary to-primary/90 text-primary-foreground py-2 shadow-sm"
+          >
+            <div className="container mx-auto px-4 flex justify-between items-center text-sm">
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 animate-pulse" />
+                <a href="tel:+916280610158" className="hover:underline hover:text-secondary transition-colors">
+                  +91 62806 10158
+                </a>
+                <span className="mx-1">|</span>
+                <a href="tel:+918360410158" className="hover:underline hover:text-secondary transition-colors">
+                  +91 83604 10158
+                </a>
+                <span className="mx-2">|</span>
+                <a href="mailto:shreebalajienvirotech@gmail.com" className="hover:underline hover:text-secondary transition-colors">
+                  shreebalajienvirotech@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-primary-foreground/90">
+                <span className="inline-block animate-bounce">🌿</span>
+                <span>Sustainable Energy for a Greener Tomorrow</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       
-      <nav
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "top-0 bg-card/98 backdrop-blur-lg shadow-elevated py-3"
+            ? "top-0 bg-card/95 backdrop-blur-xl shadow-lg border-b border-border/50 py-3"
             : "top-0 md:top-10 bg-transparent py-4"
         }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div 
+            <motion.div
               className="flex items-center gap-3 cursor-pointer group"
               onClick={() => scrollToSection("hero")}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-secondary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
+                <motion.div
+                  className="absolute inset-0 bg-secondary/30 rounded-full blur-lg"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileHover={{ opacity: 1, scale: 1.2 }}
+                  transition={{ duration: 0.3 }}
+                />
                 <picture>
                   <source srcSet={logoWebP} type="image/webp" />
                   <img
                     src={logoJPG}
                     alt="Shree Balaji Envirotech"
-                    className="h-12 w-auto rounded-full relative z-10 transition-transform group-hover:scale-105"
+                    className="h-12 w-auto rounded-full relative z-10 ring-2 ring-secondary/20 transition-all group-hover:ring-secondary/40"
                     width="48"
                     height="48"
                     loading="eager"
@@ -149,10 +175,10 @@ const Navbar = () => {
                 </picture>
               </div>
               <div className={`hidden sm:block transition-colors ${isScrolled ? "text-foreground" : "text-primary-foreground"}`}>
-                <div className="font-bold text-lg leading-tight">Shree Balaji</div>
-                <div className="text-xs opacity-80">Envirotech</div>
+                <div className="font-bold text-lg leading-tight tracking-tight">Shree Balaji</div>
+                <div className="text-xs opacity-80 tracking-wide">Envirotech</div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-5">
@@ -189,31 +215,51 @@ const Navbar = () => {
                 </button>
                 
                 {/* Dropdown Menu */}
-                <div className={cn(
-                  "absolute top-full left-0 mt-2 w-64 bg-card rounded-xl shadow-elevated border border-border overflow-hidden transition-all duration-200 origin-top",
-                  isBusinessOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
-                )}>
-                  <div className="p-2">
-                    {businessNavItems.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={item.path}
-                          to={item.path}
-                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
-                        >
-                          <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                            <Icon className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <div className="font-medium text-foreground">{item.label}</div>
-                            <div className="text-xs text-muted-foreground">{item.description}</div>
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
+                <AnimatePresence>
+                  {isBusinessOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute top-full left-0 mt-2 w-72 bg-card/98 backdrop-blur-xl rounded-xl shadow-2xl border border-border overflow-hidden"
+                    >
+                      <div className="p-2">
+                        {businessNavItems.map((item, index) => {
+                          const Icon = item.icon;
+                          return (
+                            <motion.div
+                              key={item.path}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: index * 0.05, duration: 0.2 }}
+                            >
+                              <Link
+                                to={item.path}
+                                className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-all duration-200 group"
+                              >
+                                <motion.div
+                                  className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                                  whileHover={{ scale: 1.1, rotate: 5 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  <Icon className="w-4 h-4" />
+                                </motion.div>
+                                <div className="flex-1">
+                                  <div className="font-medium text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                                    {item.label}
+                                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                                  </div>
+                                  <div className="text-xs text-muted-foreground mt-0.5">{item.description}</div>
+                                </div>
+                              </Link>
+                            </motion.div>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* Industries Dropdown */}
@@ -238,31 +284,51 @@ const Navbar = () => {
                 </button>
                 
                 {/* Dropdown Menu */}
-                <div className={cn(
-                  "absolute top-full right-0 mt-2 w-72 bg-card rounded-xl shadow-elevated border border-border overflow-hidden transition-all duration-200 origin-top z-50",
-                  isIndustriesOpen ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
-                )}>
-                  <div className="p-2 max-h-[400px] overflow-y-auto">
-                    {industryNavItems.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={item.path}
-                          to={item.path}
-                          className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-colors group"
-                        >
-                          <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                            <Icon className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <div className="font-medium text-foreground">{item.label}</div>
-                            <div className="text-xs text-muted-foreground">{item.description}</div>
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
+                <AnimatePresence>
+                  {isIndustriesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute top-full right-0 mt-2 w-80 bg-card/98 backdrop-blur-xl rounded-xl shadow-2xl border border-border overflow-hidden z-50"
+                    >
+                      <div className="p-2 max-h-[480px] overflow-y-auto custom-scrollbar">
+                        {industryNavItems.map((item, index) => {
+                          const Icon = item.icon;
+                          return (
+                            <motion.div
+                              key={item.path}
+                              initial={{ opacity: 0, x: 20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: index * 0.03, duration: 0.2 }}
+                            >
+                              <Link
+                                to={item.path}
+                                className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted transition-all duration-200 group"
+                              >
+                                <motion.div
+                                  className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                                  whileHover={{ scale: 1.1, rotate: -5 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  <Icon className="w-4 h-4" />
+                                </motion.div>
+                                <div className="flex-1">
+                                  <div className="font-medium text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                                    {item.label}
+                                    <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                                  </div>
+                                  <div className="text-xs text-muted-foreground mt-0.5">{item.description}</div>
+                                </div>
+                              </Link>
+                            </motion.div>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
               
               {/* Page Navigation Links */}
@@ -280,12 +346,15 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              <Button
-                onClick={() => scrollToSection("contact")}
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-elevated hover:scale-105 transition-all"
-              >
-                Get Quote
-              </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  onClick={() => scrollToSection("contact")}
+                  className="bg-gradient-to-r from-secondary to-secondary/90 hover:from-secondary/90 hover:to-secondary text-secondary-foreground shadow-lg hover:shadow-xl transition-all"
+                >
+                  <span>Get Quote</span>
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              </motion.div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -312,12 +381,15 @@ const Navbar = () => {
           />
 
           {/* Mobile Menu Slide-in Panel */}
-          <div 
-            className={cn(
-              "md:hidden fixed top-0 right-0 h-full w-[280px] bg-card z-50 shadow-2xl transition-transform duration-300 ease-out",
-              isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-            )}
-          >
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="md:hidden fixed top-0 right-0 h-full w-[280px] bg-card/98 backdrop-blur-xl z-50 shadow-2xl border-l border-border"
+              >
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center gap-2">
@@ -486,9 +558,11 @@ const Navbar = () => {
                 </a>
               </div>
             </div>
-          </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </nav>
+      </motion.nav>
     </>
   );
 };
