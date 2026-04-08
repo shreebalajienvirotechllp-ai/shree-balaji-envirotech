@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Home, Package, Sparkles, MessageSquare, Users, BookOpen, Briefcase, ChevronDown, Factory, ClipboardCheck, Wrench, ShoppingCart, Building2, Wheat, Milk, FileText, Flame, Egg, Fuel, UtensilsCrossed, Building } from "lucide-react";
-import logo from "@/assets/logo.jpg";
+import { Menu, X, Phone, Chrome as Home, Package, Sparkles, MessageSquare, Users, BookOpen, Briefcase, ChevronDown, Factory, ClipboardCheck, Wrench, ShoppingCart, Building2, Wheat, Milk, FileText, Flame, Egg, Fuel, UtensilsCrossed, Building } from "lucide-react";
+const logoWebP = "/logo.webp";
+const logoJPG = "/logo.jpg";
 import { cn } from "@/lib/utils";
 
 const scrollNavItems = [
@@ -135,11 +136,17 @@ const Navbar = () => {
             >
               <div className="relative">
                 <div className="absolute inset-0 bg-secondary/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
-                <img 
-                  src={logo} 
-                  alt="Shree Balaji Envirotech" 
-                  className="h-12 w-auto rounded-full relative z-10 transition-transform group-hover:scale-105" 
-                />
+                <picture>
+                  <source srcSet={logoWebP} type="image/webp" />
+                  <img
+                    src={logoJPG}
+                    alt="Shree Balaji Envirotech"
+                    className="h-12 w-auto rounded-full relative z-10 transition-transform group-hover:scale-105"
+                    width="48"
+                    height="48"
+                    loading="eager"
+                  />
+                </picture>
               </div>
               <div className={`hidden sm:block transition-colors ${isScrolled ? "text-foreground" : "text-primary-foreground"}`}>
                 <div className="font-bold text-lg leading-tight">Shree Balaji</div>
@@ -314,11 +321,16 @@ const Navbar = () => {
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center gap-2">
-                <img 
-                  src={logo} 
-                  alt="Shree Balaji Envirotech" 
-                  className="h-10 w-auto rounded-full" 
-                />
+                <picture>
+                  <source srcSet={logoWebP} type="image/webp" />
+                  <img
+                    src={logoJPG}
+                    alt="Shree Balaji Envirotech"
+                    className="h-10 w-auto rounded-full"
+                    width="40"
+                    height="40"
+                  />
+                </picture>
                 <div>
                   <div className="font-bold text-sm leading-tight text-foreground">Shree Balaji</div>
                   <div className="text-xs text-muted-foreground">Envirotech</div>
