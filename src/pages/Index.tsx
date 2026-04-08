@@ -8,6 +8,7 @@ import BackToTop from "@/components/BackToTop";
 import StickyCTA from "@/components/StickyCTA";
 import BottomNav from "@/components/BottomNav";
 import SEOHead from "@/components/SEOHead";
+import { LeadCapturePopup } from "@/components/LeadCapturePopup";
 
 // Lazy load components below the fold
 const Products = lazy(() => import("@/components/Products"));
@@ -115,6 +116,7 @@ const Index = () => {
       <BackToTop />
       <StickyCTA />
       <BottomNav />
+      <LeadCapturePopup />
     </main>
   );
 };

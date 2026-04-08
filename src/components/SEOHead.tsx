@@ -13,9 +13,9 @@ interface SEOHeadProps {
   breadcrumbs?: { label: string; href: string }[];
 }
 
-const SITE_URL = 'https://shreebalajienvirotech.lovable.app';
+const SITE_URL = 'https://shreebalajienvirotech.com';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
-const LOGO_URL = 'https://storage.googleapis.com/gpt-engineer-file-uploads/bCqaoewCiwUvL3FHJY89au2gZ7j1/uploads/1768682552720-Shree Balaji Envirotech Logo JPG.jpg';
+const LOGO_URL = `${SITE_URL}/logo.jpg`;
 
 // ─── WebSite Schema (sitelinks search box) ───
 const websiteSchema = {

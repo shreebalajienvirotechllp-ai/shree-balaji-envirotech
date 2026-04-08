@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Users, Target, Leaf, TrendingUp, IndianRupee, Recycle, History, Heart, Calendar, Factory, Handshake, Award, Truck, TreePine, Flame, Wind, Sprout, Users2 } from "lucide-react";
+import { Users, Target, Leaf, TrendingUp, IndianRupee, Recycle, History, Heart, Calendar, Factory, Handshake, Award, Truck, TreePine, Flame, Wind, Sprout, Users as Users2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -127,7 +127,7 @@ const AboutUs = () => {
         title="About Us - Shree Balaji Envirotech | Biomass Pellet Manufacturer Punjab"
         description="Learn about Shree Balaji Envirotech - Punjab's leading biomass pellet manufacturer. Meet our team of dedicated partners committed to sustainable energy and environmental protection."
         keywords="about shree balaji envirotech, biomass company punjab, sustainable energy team, biomass pellet manufacturer history"
-        canonicalUrl="https://shreebalajienvirotech.lovable.app/about"
+        canonicalUrl="https://shreebalajienvirotech.com/about"
       />
       <Navbar />
 

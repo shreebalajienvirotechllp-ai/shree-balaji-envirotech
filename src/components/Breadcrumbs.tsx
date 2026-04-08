@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Chrome as Home } from "lucide-react";
 
 interface BreadcrumbItem {
   label: string;
@@ -67,13 +67,13 @@ const Breadcrumbs = ({ items, className = "" }: BreadcrumbsProps) => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://shreebalajienvirotech.lovable.app"
+        "item": "https://shreebalajienvirotech.com"
       },
       ...breadcrumbItems.map((item, index) => ({
         "@type": "ListItem",
         "position": index + 2,
         "name": item.label,
-        ...(item.path && { "item": `https://shreebalajienvirotech.lovable.app${item.path}` })
+        ...(item.path && { "item": `https://shreebalajienvirotech.com${item.path}` })
       }))
     ]
   };
